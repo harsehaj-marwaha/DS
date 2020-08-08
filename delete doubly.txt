@@ -1,0 +1,59 @@
+public class Main{ 
+    Node head;
+    class Node { 
+        int data; 
+        Node prev; 
+        Node next; 
+        Node(int d) 
+{data=d;} 
+    } 
+    public void push(int new_data) 
+    { 
+        Node new_Node = new Node(new_data); 
+        new_Node.next = head; 
+        new_Node.prev = null; 
+        if (head != null) 
+            head.prev = new_Node;
+        head = new_Node; 
+    }
+    public void printlist(Node node) 
+    { 
+        Node last = null; 
+        while (node != null) { 
+            System.out.print(node.data + " "); 
+            last = node; 
+            node = node.next; 
+        } 
+  
+        System.out.println(); 
+    }
+    void deleteNode(Node del) 
+    {
+        if (head == null || del == null) { 
+            return; 
+        } 
+        if (head == del) { 
+            head = del.next;}
+        if (del.next != null) { 
+            del.next.prev = del.prev; }
+        if (del.prev != null) { 
+            del.prev.next = del.next; 
+        } 
+        return; 
+    } 
+    public static void main(String[] args) 
+    { 
+        Main del = new DLL(); 
+        del.push(2); 
+        del.push(4); 
+        del.push(8); 
+        del.push(10); 
+        del.printlist(del.head); 
+        del.deleteNode(del.head); 
+        System.out.print("\n deleting first node: "); 
+        del.printlist(del.head); 
+        del.deleteNode(del.head.next);
+        System.out.print("\n delete middle node="); 
+        del.printlist(del.head); 
+    } 
+} 
